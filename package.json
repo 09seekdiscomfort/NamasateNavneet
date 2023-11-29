@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "This is Namaste React for Navneet",
   "scripts": {
+    "start": "parcel index2.html",
+    "build": "parcel build index2.html",
     "test": "jest"
   },
   "repository": {
