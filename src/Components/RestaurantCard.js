@@ -1,5 +1,5 @@
 const RestaurantCard = (props) => {
-    const {name, costForTwo, cloudinaryImageId, id, avgRating, } = props.dynamicData.info
+    const {name, costForTwo, cloudinaryImageId, id, avgRating } = props.dynamicData.info
     const {deliveryTime} = props.dynamicData.info.sla;
     return(
         <div className="restaurantCard" key={id}>

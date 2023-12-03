@@ -30,18 +30,20 @@
     margin-right: 10px;
 }
 
+.bdy-container{
+    padding: 60px;
+}
+
 .body{
-    border: 1px solid black;
-    margin-top: 20px;
-    max-width: 100%;
     display: flex;
+    background-color: #040404;
+    padding-left: 50px;
 }
 
 .restaurantCard{
     width: 200px;
     height: 370px;
-    border: 1px solid black;
-    padding: 30px;
+    background-color: #f0f0f0;
 }
 
 .restImage{
@@ -54,6 +56,7 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 60px;
 }
 
 
@@ -61,10 +64,17 @@
     margin: 20px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    cursor: pointer;
+    cursor: pointer;         
+}
+
+.restaurantCard h3 {
     white-space: nowrap;  
-    overflow: hidden;         
+    overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.foodPageContainer{
+    background-color: aqua;
 }
 
 .restaurantCard:hover{
@@ -76,6 +86,21 @@
     height: 50%;
 }
 
-.resturantName{
-    margin-right: 50px;
+.bdy-hdr{
+    display: flex;
 }
+
+/* .resturantName{
+    
+} */
+
+.search{
+    margin: 30px;
+    display: flex;
+}
+
+.btn-filter{
+    margin: 30px;
+}
+
+
