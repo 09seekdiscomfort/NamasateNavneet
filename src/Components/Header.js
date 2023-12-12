@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import logo from '../../assets/Icons/logo.png'
+import { Link } from 'react-router-dom';
 
 const Header = () =>{
 
@@ -8,8 +9,12 @@ const Header = () =>{
         <img src={logo} className="logoIcon"/>
         <div className="headerList">
             <ul>
-                <li>Home</li>
-                <li>About</li>
+                <li>
+                   <Link to='/' className='link'>Home</Link> 
+                </li>
+                <li>
+                    <Link to='/about' className='link'>About</Link>
+                </li>
                 <li>Carrer</li>
                 <li>Cart</li>
             </ul>

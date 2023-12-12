@@ -2,15 +2,15 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { data } from "./utils/mockData";
 import Skeleton from "react-loading-skeleton";
+import searchIcon from "../../assets/Icons/searchIcon.png"
 
 const Body = () =>{
     const [resturantsState, setResturantsState] = useState([]);
     const [filterSearch, setFilterSearch] = useState([]);
     const [search, setSearch] = useState('');
-    const [check, setCheck] = useState(true);
 
     const filterData = () =>{
-         setFilterSearch(resturantsState.filter((res)=> res.info.avgRating>4));
+         setFilterSearch(resturantsState?.filter((res)=> res.info.avgRating>4));
     };
 
     const fetchData = async () => {
@@ -21,7 +21,7 @@ const Body = () =>{
     };
 
     const searchFilter = () =>{
-        const data = (resturantsState.filter((data)=> data.info.name.toUpperCase().includes(search.toUpperCase())));
+        const data = (resturantsState?.filter((data)=> data.info.name.toUpperCase().includes(search.toUpperCase())));
         setFilterSearch(data);
 
     };
@@ -30,7 +30,9 @@ const Body = () =>{
         fetchData();
     }, []);
 
-    if(filterSearch.length === 0){
+    
+
+    if(filterSearch?.length === 0){
         return(
             <>
                 <Skeleton height={50}  width={50} />
@@ -50,7 +52,7 @@ const Body = () =>{
                             setSearch(e.target.value);
                         }}
                     />
-                    <button onClick={()=>searchFilter()}>Search</button>
+                    <img src={searchIcon} className="searchIcon" onClick={()=>searchFilter()}/>
                 </div>
                 <div className="btn-filter">
                         <button onClick={()=>filterData()}>Best Restaurants</button>
@@ -59,8 +61,10 @@ const Body = () =>{
             <div className='body'>
                     <div className="cardContainer">
                         { filterSearch?.map((restaurants) => (
-                            <RestaurantCard dynamicData={restaurants}/>)
-                        )}
+                            <>
+                                <RestaurantCard dynamicData={restaurants} key={restaurants?.dynamicData?.info}/>
+                            </>
+                        ))}
                     </div>
     
             </div>
