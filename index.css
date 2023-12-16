@@ -109,12 +109,14 @@
     cursor: pointer;
     gap: 12px;
     grid-auto-flow: row;
+    text-decoration: none;
    
 }
 
 .rst-txt h3,
 .rst-txt h4 {
     margin: 0; /* Remove margin for h3 and h4 tags */
+    text-decoration: none;
 }
 
 .cusines{
@@ -143,5 +145,6 @@
     cursor: pointer;
 
 }
+
 
 

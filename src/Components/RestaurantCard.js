@@ -3,7 +3,6 @@ const RestaurantCard = (props) => {
     const {name, costForTwo, cloudinaryImageId, id, avgRating, cuisines } = props.dynamicData.info
     const {deliveryTime} = props.dynamicData.info.sla;
 
-    console.log(' props.dynamicData.info',  props.dynamicData.info);
     return(
         <div className="restaurantCard">
             <div className="imageRestaurant">

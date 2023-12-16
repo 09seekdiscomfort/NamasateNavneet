@@ -1,21 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { API_URL } from './utils/constants';
+import { useParams } from 'react-router-dom';
+
+
 const RestaurantMenu = () => {
+  const [menuData, setMenuData] = useState();
+  const { resId } = useParams();
+
+  const fetchData = async() => {
+    const response = await fetch(API_URL.dynamicRoute+resId);
+    const jsonData = await response?.json();
+    if(jsonData?.data?.cards){
+      setMenuData(jsonData?.data?.cards[0]?.card?.card?.info)
+    }else{
+      setMenuData(null);
+    }
+  } 
+  
   useEffect(()=>{
     fetchData();
   },[]);
 
-  const fetchData = async() => {
-    const response = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4407513&lng=77.1031059&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
-    const jsonData = await response.json();
-    setResturantsState(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilterSearch(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-  } 
   return (
     <div className='menu'>
-        <h1>Name of Restrauant</h1>
+        <h1>{menuData?.name}</h1>
         <h2>Menu</h2>
         <ul>
-            <li>dish 1</li>
+          {menuData?.cuisines?.map((menuItem)=>
+            <li>{menuItem}</li>
+          )}
         </ul>
     </div>
   )
