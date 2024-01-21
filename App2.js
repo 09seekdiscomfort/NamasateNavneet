@@ -24,7 +24,7 @@ const HeadingComponent = () =>{
             <h1>This is a heading Component</h1>
              <HeadingComponent2 />                              
              <HeadingComponent2></HeadingComponent2> 
-             {HeadingComponent2()}
+              { HeadingComponent2() }
         </div>
     )
 };
