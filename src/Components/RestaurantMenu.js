@@ -10,7 +10,9 @@ const RestaurantMenu = () => {
   const fetchData = async() => {
     const response = await fetch(API_URL.dynamicRoute+resId);
     const jsonData = await response?.json();
+    console.log('jsonData', jsonData);
     if(jsonData?.data?.cards){
+
       setMenuData(jsonData?.data?.cards[0]?.card?.card?.info)
     }else{
       setMenuData(null);

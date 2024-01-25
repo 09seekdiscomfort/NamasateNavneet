@@ -8,17 +8,8 @@ import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import AboutClass from "./Components/AboutClass";
-import Grocery from "./Components/Grocery"
 
 const Grocery = lazy(()=> import("./Components/Grocery"));
-
-const Footer = ()=>{
-    return(
-        <div id='footer'>
-
-        </div>
-    )
-}
 
 const FoodDay = () =>{
     return(
@@ -56,7 +47,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/grocery',
-                element: <Suspense> <Grocery /> </Suspense>
+                element: <Suspense><Grocery /> </Suspense>
             }
         ],
         errorElement: <Error />

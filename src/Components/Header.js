@@ -10,26 +10,26 @@ const Header = () =>{
     // const browserType = useBrowserDetection();
 
     return(
-    <div className='header'>
-        <img src={logo} className="logoIcon"/>
-        <div className="headerList">
-            <ul>
-                <li>{status ? 'Network : ✅' : 'Network : 🔴'}</li> 
+    <div className='header flex justify-between bg-pink-100 shadow-xl m-2'>
+        <img src={logo} className="logoIcon w-36"/>
+        <div className="flex items-center">
+            <ul className="flex p-4 m-4">
+                <li className='px-4'>{status ? 'Network : ✅' : 'Network : 🔴'}</li> 
                 {/* <li>{'Browser Type :' + browserType}</li> */}
-                <li>
+                <li className='px-4'>
                    <Link to='/' className='link'>Home</Link> 
                 </li>
-                <li>
+                <li className='px-4'>
                     <Link to='/about' className='link'>About</Link>
                 </li>
-                <li>
+                <li className='px-4'>
                     <Link to='/aboutClass' className='link'>AboutClass</Link>
                 </li>
-                <li>
+                <li className='px-4'>
                     <Link to='/grocery' className='link'>Grocery</Link>
                 </li>
-                <li>Carrer</li>
-                <li>Cart</li>
+                <li className='px-4'>Carrer</li>
+                <li className='px-4'>Cart</li>
             </ul>
         </div>
     </div>

@@ -40,31 +40,37 @@ const Body = () =>{
         return(
             <div className="bdy-container">
             <div className="bdy-hdr">
-                 <div className="search">
+                 <div className="search flex justify-center mt-4">
                     <input 
                         type="text" 
-                        className="searchText" 
+                        className="searchText border border-solid border-black h-7 rounded-xl" 
                         value={search}
-                        onChange={(e)=>{
+                        onChange={(e)=>{ 
                             setSearch(e.target.value);
                         }}
                     />
-                    <img src={searchIcon} className="searchIcon" onClick={()=>searchFilter()}/>
-                </div>
-                <div className="btn-filter">
+                     <button
+                        className="flex items-center bg-green-300 px-4 ml-2 rounded-xl shadow-xl"
+                        onClick={searchFilter}
+                        >
+                            <img src={searchIcon} className="w-7" alt="Search Icon" />
+                    </button>
+                    <div className="flex items-center bg-green-300 px-4 ml-2 rounded-xl btn-filter shadow-xl">
                     <button onClick={()=>filterData()}>Best Restaurants</button>
                 </div>
+                </div>
+               
             </div> 
             <div className='body'>
                     {!skeletonState && (
-                        <div className="cardContainer">
+                        <div className="cardContainer flex flex-wrap">
                             { filterSearch?.map((restaurants) => (
-                                <>
-                                    <Link to={`menu/${restaurants?.info?.id}`} key={restaurants?.info?.id}>
+                                <div key={restaurants?.info?.id}>
+                                    <Link to={`menu/${restaurants?.info?.id}`} >
                                         <RestaurantCard dynamicData={restaurants} />
                                     </Link>
                                     
-                                </>
+                                </div>
                             ))}
                         </div>
                     )}
