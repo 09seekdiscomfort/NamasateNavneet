@@ -9,18 +9,25 @@ import Contact from './Components/Contact'
 import RestaurantMenu from './Components/RestaurantMenu'
 import AboutClass from './Components/AboutClass'
 import UserContext from './Components/utils/UserContext'
+import { Provider } from 'react-redux'
+import appStore from './Components/utils/appStore'
+import Cart from './Components/Cart'
 
 const Grocery = lazy(() => import('./Components/Grocery'))
 
 const FoodDay = () => {
     const [newUserName, setNewUserName] = useState('subhanshu')
     return (
-        <UserContext.Provider value={{ userName: newUserName, setNewUserName }}>
-            <div className="foodPageContainer">
-                <Header />
-                <Outlet />
-            </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider
+                value={{ userName: newUserName, setNewUserName }}
+            >
+                <div className="foodPageContainer">
+                    <Header />
+                    <Outlet />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -56,6 +63,10 @@ const appRouter = createBrowserRouter([
                         <Grocery />{' '}
                     </Suspense>
                 ),
+            },
+            {
+                path: '/cart',
+                element: <Cart />,
             },
         ],
         errorElement: <Error />,

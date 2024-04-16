@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom'
 import useOnlineStatus from './utils/useCustomHooks/useOnlineStatus'
 import useBrowserDetection from './utils/useCustomHooks/useBrowserDetection'
 import UserContext from './utils/UserContext'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
     const status = useOnlineStatus()
     const { userName } = useContext(UserContext)
+
+    const cartItems = useSelector((store) => store.cart.items)
+
+    console.log('cartItem', cartItems)
 
     return (
         <div className="header flex justify-between bg-pink-100 shadow-xl m-2">
@@ -39,7 +44,9 @@ const Header = () => {
                         </Link>
                     </li>
                     <li className="px-4">Carrer</li>
-                    <li className="px-4">Cart</li>
+                    <Link to={'/cart'}>
+                        <li className="px-4">Cart - ({cartItems.length})</li>
+                    </Link>
                     <li className="capitalize font-semibold from-stone-700 border-slate-800 border-solid">
                         {userName}
                     </li>
