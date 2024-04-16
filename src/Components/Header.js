@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import logo from '../../assets/Icons/logo.png'
 import { Link } from 'react-router-dom'
 import useOnlineStatus from './utils/useCustomHooks/useOnlineStatus'
 import useBrowserDetection from './utils/useCustomHooks/useBrowserDetection'
+import UserContext from './utils/UserContext'
 
 const Header = () => {
     const status = useOnlineStatus()
+    const { userName } = useContext(UserContext)
 
     return (
         <div className="header flex justify-between bg-pink-100 shadow-xl m-2">
@@ -38,6 +40,9 @@ const Header = () => {
                     </li>
                     <li className="px-4">Carrer</li>
                     <li className="px-4">Cart</li>
+                    <li className="capitalize font-semibold from-stone-700 border-slate-800 border-solid">
+                        {userName}
+                    </li>
                 </ul>
             </div>
         </div>

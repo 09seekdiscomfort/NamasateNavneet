@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import Header from './Components/Header'
 import Body from './Components/Body'
@@ -8,15 +8,19 @@ import Error from './Components/Error'
 import Contact from './Components/Contact'
 import RestaurantMenu from './Components/RestaurantMenu'
 import AboutClass from './Components/AboutClass'
+import UserContext from './Components/utils/UserContext'
 
 const Grocery = lazy(() => import('./Components/Grocery'))
 
 const FoodDay = () => {
+    const [newUserName, setNewUserName] = useState('subhanshu')
     return (
-        <div className="foodPageContainer">
-            <Header />
-            <Outlet />
-        </div>
+        <UserContext.Provider value={{ userName: newUserName, setNewUserName }}>
+            <div className="foodPageContainer">
+                <Header />
+                <Outlet />
+            </div>
+        </UserContext.Provider>
     )
 }
 
@@ -42,7 +46,7 @@ const appRouter = createBrowserRouter([
                 element: <Contact />,
             },
             {
-                path: '/Menu/:resId',
+                path: '/Menu/:resId/:name',
                 element: <RestaurantMenu />,
             },
             {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import RestaurantCard from './RestaurantCard'
 import Skeleton from 'react-loading-skeleton'
@@ -6,12 +6,15 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import searchIcon from '../../assets/Icons/searchIcon.png'
 import { API_URL } from './utils/constants'
 import { Link } from 'react-router-dom'
+import withTestComponent from './higherComp/withtestComponent'
+import UserContext from './utils/UserContext'
 
 const Body = () => {
     const [resturantsState, setResturantsState] = useState([])
     const [filterSearch, setFilterSearch] = useState([])
     const [search, setSearch] = useState('')
     const [skeletonState, setSkeletonState] = useState(true)
+    const { userName, setNewUserName } = useContext(UserContext)
 
     const filterData = () => {
         setFilterSearch(
@@ -44,19 +47,29 @@ const Body = () => {
         setFilterSearch(data)
     }
 
-    const RestaurantCardModified = testComponent(RestaurantCard)
+    const RestaurantCardModified = withTestComponent(RestaurantCard)
 
     useEffect(() => {
         fetchData()
     }, [])
 
     return (
-        <div className="bdy-container">
+        <div className="bdy-container ml-[5%]">
             <div className="bdy-hdr">
                 <div className="search flex justify-center mt-4">
+                    <span className="">Change User Name</span>
                     <input
                         type="text"
-                        className="searchText border border-solid border-black h-7 rounded-xl"
+                        className="searchText border border-solid border-black h-7 rounded-xl p-2"
+                        value={userName}
+                        onChange={(e) => {
+                            setNewUserName(e.target.value)
+                        }}
+                    />
+                    <span>Search Restaurant</span>
+                    <input
+                        type="text"
+                        className="searchText border border-solid border-black h-7 rounded-xl p-5"
                         value={search}
                         onChange={(e) => {
                             setSearch(e.target.value)
@@ -84,11 +97,13 @@ const Body = () => {
                     <div className="cardContainer flex flex-wrap">
                         {filterSearch?.map((restaurants) => (
                             <div key={restaurants?.info?.id}>
-                                <Link to={`menu/${restaurants?.info?.id}`}>
+                                <Link
+                                    to={`menu/${restaurants?.info?.id}/${restaurants?.info?.name}`}
+                                >
                                     <RestaurantCard dynamicData={restaurants} />
-                                    <RestaurantCardModified
+                                    {/* <RestaurantCardModified
                                         dynamicData={restaurants}
-                                    />
+                                    /> */}
                                 </Link>
                             </div>
                         ))}
@@ -109,14 +124,3 @@ const Body = () => {
 }
 
 export default Body
-
-export const testComponent = (RestaurantCard) => {
-    return (props) => {
-        return (
-            <>
-                <label>My Test</label>
-                <RestaurantCard {...props} />
-            </>
-        )
-    }
-}
